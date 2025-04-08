@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,18 @@
 
 <div class="container">
 
-    <h3>Car list</h3>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>Car list</h3>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <p style="margin: 0;">User: <span sec:authentication="principal.username"></span></p>
+            <a th:href="@{/admin/admin_page}" style="margin: 0;">
+                <input type="submit" value="Admin Page" class="btn btn-primary btn-sm">
+            </a>
+            <form action="#" th:action="@{/logout}" method="POST" style="margin: 0;">
+                <input type="submit" value="Logout" class="btn btn-danger btn-sm">
+            </form>
+        </div>
+    </div>
     <hr>
 
     <a th:href="@{/cars/addCar}" class="btn btn-primary btn-sm mb-3">Add Car</a>
